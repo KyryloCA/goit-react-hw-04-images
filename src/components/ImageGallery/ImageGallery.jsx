@@ -38,21 +38,22 @@ const closeModal = () => {
  }
 
 
-const handleSearch = (searchWord,page)=>{
-  
-  setLoading(true)
-    api(searchWord, page)
-    .then((arr) => {
-      pushItemsArray(arr);
-      setLoading(false)
-          })
-    .catch(() => {
-      setLoading(false)
-          });
-}
+
 
 
 useEffect(() => {
+  const handleSearch = (searchWord,page)=>{
+  
+    setLoading(true)
+      api(searchWord, page)
+      .then((arr) => {
+        pushItemsArray(arr);
+        setLoading(false)
+            })
+      .catch(() => {
+        setLoading(false)
+            });
+  }
   if (props.searchWord!==''){setItemsArray([]);
     setPageCounter(1);
     handleSearch(props.searchWord, 1);}
@@ -60,11 +61,23 @@ useEffect(() => {
 }, [ props.searchWord]);
 
 useEffect(() => {
+  const handleSearch = (searchWord,page)=>{
+  
+    setLoading(true)
+      api(searchWord, page)
+      .then((arr) => {
+        pushItemsArray(arr);
+        setLoading(false)
+            })
+      .catch(() => {
+        setLoading(false)
+            });
+  }
   if (pageCounter > 1) {
     handleSearch(props.searchWord, pageCounter);
   }
   
-}, [pageCounter]);
+}, [pageCounter, props.searchWord]);
 
 
     
